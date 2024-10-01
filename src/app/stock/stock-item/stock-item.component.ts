@@ -1,46 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Stock } from '../../model/stock';
 
 @Component({
   selector: 'app-stock-item',
-  // templateUrl: './stock-item.component.html',
-  template: `
-	<div class="stock-container">
-	  <div class="name">{{stock.name + ' (' + stock.code + ')'}}</div>
-	  <div class="price"
-	      [class]="stock.isPositiveChange() ? 'positive' : 'negative'">
-	      $ {{stock.price}}
-   </div>
-	  <button (click)="toggleFavorite($event)"
-	          *ngIf="!stock.favorite">Add to Favorite</button>
-	</div>
-  `,
+  templateUrl: './stock-item.component.html',
   styleUrl: './stock-item.component.css',
  })
-export class StockItemComponent implements OnInit {
-  // public stocks: Array<Stock>;
-  public stock: Stock;
+export class StockItemComponent {
 
-  constructor() {}
+  @Input() public stock: Stock;
+  @Output() private toggleFavorite: EventEmitter<Stock>;
 
-  ngOnInit() {
-    // this.stocks = [
-    //   new Stock('Test Stock Company', 'TSC', 85, 80),
-    //   new Stock('Second Stock Company', 'SSC', 10, 20),
-    //   new Stock('Last Stock Company', 'LSC', 876, 765)
-    // ];
-
-    this.stock = new Stock('Test Stock Company', 'TSC', 85, 80);
-
+  constructor() {
+    this.toggleFavorite = new EventEmitter<Stock>();
   }
 
-  toggleFavorite(event) {
-    console.log('We are toggling the favorite state for stock', event);
-    this.stock.favorite = !this.stock.favorite;
+ onToggleFavorite(event) {
+    this.toggleFavorite.emit(this.stock);
   }
 
-  trackStockByCode(index, stock) {
-    return stock.code;
-  }
 }
