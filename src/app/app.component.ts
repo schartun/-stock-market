@@ -5,7 +5,6 @@ import { Stock } from './model/stock';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-
 })
 export class AppComponent implements OnInit {
   title = 'Stock Market App';
@@ -16,9 +15,12 @@ export class AppComponent implements OnInit {
     this.stock = new Stock('Test Stock Company', 'TSC', 85, 80);
   }
 
-onToggleFavorite(stock: Stock) {
-  console.log('Favorite for stock ', stock, ' was triggered');
-  this.stock.favorite = !this.stock.favorite;
-}
+  onToggleFavorite(stock: Stock) {
+    console.log('Favorite for stock ', stock, ' was triggered');
+    this.stock.favorite = !this.stock.favorite;
+  }
 
+  testMethod() {
+    console.log('Test method in AppComponent triggered');
+  }
 }
