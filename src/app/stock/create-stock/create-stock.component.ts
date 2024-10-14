@@ -1,0 +1,14 @@
+import { Component, OnInit } from '@angular/core';
+import { Stock } from '../../model/stock';
+
+@Component({
+  selector: 'app-create-stock',
+  templateUrl: './create-stock.component.html',
+  styleUrl: './create-stock.component.css',
+})
+export class CreateStockComponent {
+  public stock: Stock;
+  constructor() {
+    this.stock = new Stock('test', '', 0, 0);
+  }
+}

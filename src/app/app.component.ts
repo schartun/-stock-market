@@ -20,7 +20,4 @@ export class AppComponent implements OnInit {
     this.stock.favorite = !this.stock.favorite;
   }
 
-  testMethod() {
-    console.log('Test method in AppComponent triggered');
-  }
 }
